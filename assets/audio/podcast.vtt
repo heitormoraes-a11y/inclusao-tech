@@ -1,0 +1,16 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:05.000
+Lucas: Olá a todos! Está no ar o primeiro episódio do Voz Inclusiva...
+
+00:00:05.000 --> 00:00:11.000
+Lucas: Hoje recebemos a desenvolvedora Mariana para bater um papo sobre os maiores erros na web.
+
+00:00:11.000 --> 00:00:18.000
+Mariana: Oi Lucas! O erro mais comum é esquecer o atributo alt nas imagens ou o foco visível nos links.
+
+00:00:18.000 --> 00:00:25.000
+Mariana: A boa notícia é que com HTML semântico resolvemos 80% dos problemas de acessibilidade!
+
+00:00:25.000 --> 00:00:40.000
+Lucas: Sensacional! No próximo bloco veremos exemplos práticos com formulários e rótulos semânticos.

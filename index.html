@@ -1,0 +1,1247 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="Tecnologia para Todos - Portal educativo sobre inclusão, acessibilidade digital e tecnologias assistivas." name="description">
+  <title>Tecnologia para Todos</title>
+  <style>
+    /* ==========================================================================
+       STYLE.CSS - TECNOLOGIA PARA TODOS (TEMA CLARO COM TONS AZUIS)
+       ========================================================================== */
+    :root {
+      --bg-main: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-surface-soft: #f0f4f8;
+      --bg-surface-accent: #e0e7ff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-subtle: #64748b;
+      --primary-blue: #2563eb;
+      --primary-blue-hover: #1d4ed8;
+      --primary-blue-light: #dbeafe;
+      --accent-indigo: #4f46e5;
+      --accent-indigo-hover: #4338ca;
+      --border-color: #cbd5e1;
+      --border-light: #e2e8f0;
+      --focus-ring: #3b82f6;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(15,23,42,0.08), 0 4px 6px -4px rgba(15,23,42,0.03);
+      --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* Links e Foco Acessível para Teclado */
+    a {
+      color: var(--primary-blue);
+      text-decoration: none;
+      transition: color 0.2s ease, text-decoration 0.2s ease;
+    }
+
+    a:hover, a:focus-visible {
+      color: var(--accent-indigo);
+      text-decoration: underline;
+    }
+
+    :focus-visible {
+      outline: 3px solid var(--focus-ring);
+      outline-offset: 3px;
+    }
+
+    /* Pular para o conteúdo principal */
+    .skip-link {
+      position: absolute;
+      top: -50px;
+      left: 1rem;
+      background: var(--primary-blue);
+      color: #ffffff;
+      font-weight: 700;
+      padding: 0.75rem 1.25rem;
+      z-index: 10000;
+      border-radius: 6px;
+      transition: top 0.2s ease;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    /* Layout Containers */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border-light);
+      scroll-margin-top: 96px;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 0.75rem;
+      position: relative;
+      display: inline-block;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 44px;
+      height: 4px;
+      background: var(--primary-blue);
+      margin-top: 10px;
+      border-radius: 2px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      margin-bottom: 3rem;
+      max-width: 780px;
+    }
+
+    /* 1. Header */
+    .main-header {
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+    }
+
+    .brand h1 span.tech {
+      color: var(--primary-blue);
+    }
+
+    .brand h1 span.todos {
+      color: var(--accent-indigo);
+    }
+
+    .slogan {
+      font-size: 0.85rem;
+      color: var(--text-subtle);
+      font-weight: 500;
+    }
+
+    /* Menu de Navegação */
+    .nav-list {
+      display: flex;
+      list-style: none;
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      font-weight: 600;
+      padding: 0.5rem 0.85rem;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .nav-link:hover, .nav-link:focus-visible {
+      background-color: var(--primary-blue-light);
+      color: var(--primary-blue);
+      text-decoration: none;
+    }
+
+    /* Botão Menu Mobile */
+    .menu-toggle {
+      display: none;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .menu-toggle:hover {
+      border-color: var(--primary-blue);
+      color: var(--primary-blue);
+    }
+
+    /* 2. Hero em tela cheia: imagem de fundo cobre título, texto e botões */
+    .hero {
+      position: relative;
+      min-height: calc(100vh - 88px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 0 5.5rem;
+      border-bottom: none;
+      overflow: hidden;
+      background-color: #0f172a;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(180deg, rgba(15, 23, 42, 0.45) 0%, rgba(15, 23, 42, 0.72) 55%, rgba(15, 23, 42, 0.88) 100%);
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-placeholder-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #eff6ff;
+      border: 1px dashed var(--primary-blue);
+      color: var(--primary-blue);
+      padding: 0.4rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-content-wrapper {
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      background: rgba(37, 99, 235, 0.55);
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .hero-title {
+      font-size: 3.25rem;
+      line-height: 1.2;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      color: #ffffff;
+      letter-spacing: -0.03em;
+      text-shadow: 0 2px 16px rgba(15, 23, 42, 0.45);
+    }
+
+    .hero-title .highlight {
+      color: #93c5fd;
+      background: linear-gradient(120deg, #bfdbfe, #c7d2fe);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+      font-size: 1.25rem;
+      color: #e2e8f0;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 0 1px 8px rgba(15, 23, 42, 0.5);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.25rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.95rem 2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    .btn-primary {
+      background-color: var(--primary-blue);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-primary:hover, .btn-primary:focus-visible {
+      background-color: var(--primary-blue-hover);
+      color: #ffffff;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-secondary {
+      background-color: var(--bg-surface);
+      color: var(--primary-blue);
+      border: 2px solid var(--primary-blue);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero .btn-secondary {
+      background-color: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(6px);
+    }
+
+    .btn-secondary:hover, .btn-secondary:focus-visible {
+      background-color: var(--primary-blue-light);
+      border-color: var(--primary-blue-hover);
+      color: var(--primary-blue-hover);
+      text-decoration: none;
+    }
+
+    .hero .btn-secondary:hover, .hero .btn-secondary:focus-visible {
+      background-color: #ffffff;
+      color: var(--primary-blue);
+      border-color: #ffffff;
+    }
+
+    .beginner-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 0.75rem 1.25rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 1rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* 3. Seção de Conteúdo (Pilares em visual limpo e claro) */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-top: 4px solid var(--primary-blue);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: #94a3b8;
+    }
+
+    .card-header-icon {
+      font-size: 2rem;
+      margin-bottom: 1.25rem;
+      line-height: 1;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary-blue-light);
+      border-radius: 10px;
+    }
+
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-text {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      flex-grow: 1;
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+
+    .card-list {
+      list-style-type: none;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-light);
+      padding-top: 1rem;
+    }
+
+    .card-list li {
+      margin-bottom: 0.45rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .card-list li::before {
+      content: "✓";
+      color: var(--primary-blue);
+      font-weight: 800;
+    }
+
+    /* 4. Galeria de Imagens Alternadas (Zigue-Zague Lado a Lado) */
+    .zigzag-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+    }
+
+    .zigzag-item {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.25rem;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .zigzag-item:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: #94a3b8;
+    }
+
+    /* Alternância de lado */
+    .zigzag-item.reverse .zigzag-image-container {
+      order: 2;
+    }
+
+    .zigzag-item.reverse .zigzag-text-container {
+      order: 1;
+    }
+
+    .zigzag-image-container {
+      width: 100%;
+      height: 320px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      background-color: var(--bg-surface-soft);
+      position: relative;
+    }
+
+    .zigzag-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .zigzag-item:hover .zigzag-image-container img {
+      transform: scale(1.03);
+    }
+
+    .zigzag-text-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .zigzag-badge {
+      display: inline-block;
+      align-self: flex-start;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary-blue);
+      background: var(--primary-blue-light);
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .zigzag-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .zigzag-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .zigzag-highlights {
+      list-style: none;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .zigzag-highlights li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .zigzag-highlights li svg {
+      color: var(--primary-blue);
+      flex-shrink: 0;
+    }
+
+    /* 5 & 6. Seções de Mídia (Vídeo e Podcast) */
+    .media-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .video-container {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 2rem auto;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #0f172a;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-md);
+    }
+
+    .video-player {
+      width: 100%;
+      display: block;
+      max-height: 450px;
+    }
+
+    .audio-wrapper {
+      max-width: 720px;
+      margin: 1.5rem auto 2rem auto;
+      text-align: center;
+      background: var(--bg-surface-soft);
+      padding: 2rem;
+      border-radius: 16px;
+      border: 1px solid var(--border-light);
+    }
+
+    .audio-player-stage {
+      position: relative;
+      background: #0f172a;
+      border-radius: 16px;
+      padding: 1.25rem 1.25rem 4.25rem;
+    }
+
+    .audio-player {
+      width: 100%;
+      border-radius: 30px;
+      outline: none;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.06));
+    }
+
+    .audio-caption-bar {
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      bottom: 0.85rem;
+      background: rgba(15, 23, 42, 0.92);
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 0.7rem 1rem;
+      font-size: 0.98rem;
+      line-height: 1.45;
+      text-align: left;
+      min-height: 2.6rem;
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .audio-figcaption {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* Legenda em Tempo Real / Banner do Podcast */
+    .podcast-captions-box {
+      margin-top: 1.5rem;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--primary-blue);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      text-align: left;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .podcast-captions-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .podcast-captions-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary-blue);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .live-dot {
+      width: 9px;
+      height: 9px;
+      background-color: #10b981;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+    }
+
+    .live-caption-text {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      font-weight: 500;
+      line-height: 1.6;
+      background-color: var(--primary-blue-light);
+      padding: 0.85rem 1.25rem;
+      border-radius: 8px;
+      min-height: 3.5rem;
+      display: flex;
+      align-items: center;
+      transition: background-color 0.2s;
+    }
+
+    /* Details e Summary (Transcrição Completa) */
+    details {
+      background-color: var(--bg-surface-soft);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      margin-top: 1.75rem;
+      padding: 1rem 1.5rem;
+      transition: all 0.2s ease;
+    }
+
+    details[open] {
+      background-color: var(--bg-surface);
+      border-color: var(--primary-blue);
+      box-shadow: var(--shadow-sm);
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--primary-blue);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+      padding: 0.25rem 0;
+      font-size: 1.05rem;
+    }
+
+    summary:hover, summary:focus-visible {
+      color: var(--primary-blue-hover);
+    }
+
+    .transcription-box {
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border-color);
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.75;
+    }
+
+    .transcription-box p {
+      margin-bottom: 0.85rem;
+    }
+
+    .speaker {
+      font-weight: 700;
+      color: var(--primary-blue);
+    }
+
+    /* 7. Footer */
+    .main-footer {
+      background-color: #ffffff;
+      border-top: 1px solid var(--border-color);
+      padding: 4rem 0 2.5rem 0;
+      margin-top: 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-about h2 {
+      font-size: 1.5rem;
+      color: var(--text-main);
+      margin-bottom: 0.75rem;
+      font-weight: 800;
+    }
+
+    .footer-about p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    .footer-team h3 {
+      font-size: 1.2rem;
+      color: var(--primary-blue);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .team-list {
+      list-style: none;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .team-list li {
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .team-badge {
+      font-size: 0.85rem;
+      color: var(--text-subtle);
+      font-style: italic;
+    }
+
+    .placeholder-text {
+      color: var(--primary-blue);
+      border-bottom: 1px dashed var(--primary-blue);
+      font-style: normal;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-light);
+      padding-top: 2rem;
+      text-align: center;
+      color: var(--text-subtle);
+      font-size: 0.92rem;
+    }
+
+    /* ==========================================================================
+       MEDIA QUERIES (RESPONSIVIDADE)
+       ========================================================================== */
+    @media (max-width: 900px) {
+      .zigzag-item {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1.75rem;
+      }
+
+      .zigzag-item.reverse .zigzag-image-container {
+        order: 1;
+      }
+
+      .zigzag-item.reverse .zigzag-text-container {
+        order: 2;
+      }
+
+      .zigzag-image-container {
+        height: 260px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.85rem;
+      }
+
+      .hero-title {
+        font-size: 2.35rem;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-list {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #ffffff;
+        border-bottom: 2px solid var(--border-color);
+        padding: 1.5rem 1rem;
+        gap: 0.75rem;
+        box-shadow: var(--shadow-lg);
+      }
+
+      .nav-list.active {
+        display: flex;
+      }
+
+      .nav-link {
+        display: block;
+        width: 100%;
+        padding: 0.75rem 1rem;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Link de Acessibilidade para Navegação por Teclado -->
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <!-- ==========================================================================
+       1. HEADER (Cabeçalho do Projeto)
+       ========================================================================== -->
+  <header class="main-header">
+    <div class="container header-nav">
+      <div class="brand">
+        <h1 class=""><span class="tech">Tecnologia</span> para <span class="todos">Todos</span></h1>
+        <p class="slogan">Inclusão e acessibilidade no universo digital</p>
+      </div>
+      <button aria-expanded="false" aria-label="Abrir menu de navegação" class="menu-toggle" id="btn-menu">
+        ☰ Menu
+      </button>
+      <nav aria-label="Navegação principal">
+        <ul class="nav-list" id="nav-list">
+          <li class=""><a class="nav-link" href="#apresentacao">Apresentação</a></li>
+          <li class=""><a class="nav-link" href="#conteudo">Conteúdo</a></li>
+          <li class=""><a class="nav-link" href="#galeria">Galeria</a></li>
+          <li class=""><a class="nav-link" href="#video">Vídeo</a></li>
+          <li class=""><a class="nav-link" href="#podcast">Podcast</a></li>
+          <li class=""><a class="nav-link" href="#contato">Equipe</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN (Conteúdo Central da Página)
+       ========================================================================== -->
+  <main id="conteudo-principal">
+    
+    <!-- 2. SEÇÃO DE APRESENTAÇÃO (HERO COM IMAGEM DE FUNDO COBRINDO TÍTULO E BOTÕES) -->
+    <section class="hero" id="apresentacao" aria-labelledby="hero-title">
+      <img class="hero-bg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuArvsA2uRQda3Mf0fEPdmGcLMS4FhDsjyGM_6_yLXrO6ls61aFJIyv5wtQ-7L7EtkCCOWGo5h3FlTPwMiLFYehscP57dkQjmAVILEssiUTtM8N2LpqbBqvhfMprw0a0Fn5IscHlfN5ZGYFN-Zpe_-XnRs8zPptuSk_C1fO15PS0z6NPsrnFe6PC5A1upvO-7Mu_me2aI3goH-jswSbyS19nDylB--LpzH_npnoUlMRHcNXocAora7zX7bMkkNUVDkc7-uk" alt="">
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="container">
+        <div class="hero-content-wrapper" style="max-width: 960px;">
+          <span class="hero-tag">Educação e Consciência Digital</span>
+          <h2 class="hero-title" id="hero-title">A tecnologia só é verdadeiramente inovadora quando é <span class="highlight">acessível a todos</span>.</h2>
+          <p class="hero-description">
+            A acessibilidade digital não é um recurso adicional: é um direito fundamental. Criar ambientes digitais acessíveis permite que qualquer indivíduo — independentemente de suas capacidades visuais, motoras, auditivas ou cognitivas — navegue, compreenda e participe ativamente da sociedade.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#conteudo">Explorar Conteúdos</a>
+            <a class="btn btn-secondary" href="#video">Assistir Vídeo Educativo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. SEÇÃO DE CONTEÚDO (PILARES DA INCLUSÃO) -->
+    <section id="conteudo">
+      <div class="container">
+        <h2 class="section-title">Pilares da Inclusão Digital</h2>
+        <p class="section-subtitle">Descubra os principais conceitos que transformam a web em um espaço democrático para todas as pessoas.</p>
+        <div class="cards-grid">
+          <!-- Card 1 -->
+          <article class="card">
+            <div aria-hidden="true" class="card-header-icon">🌐</div>
+            <h3 class="card-title">Acessibilidade Digital</h3>
+            <p class="card-text">
+              Significa planejar e codificar sites e aplicativos para que pessoas com deficiência possam utilizá-los de forma autônoma e com equidade.
+            </p>
+            <ul class="card-list">
+              <li class="">Uso correto de HTML semântico</li>
+              <li class="">Contraste visual de alto padrão</li>
+              <li class="">Textos alternativos em imagens</li>
+            </ul>
+          </article>
+          <!-- Card 2 -->
+          <article class="card">
+            <div aria-hidden="true" class="card-header-icon">🎧</div>
+            <h3 class="card-title">Tecnologia Assistiva</h3>
+            <p class="card-text">
+              Engloba recursos, softwares e dispositivos que ampliam habilidades funcionais de pessoas com deficiência motora, visual ou auditiva.
+            </p>
+            <ul class="card-list">
+              <li class="">Leitores de tela (NVDA, TalkBack)</li>
+              <li class="">Teclados virtuais e mouses oculares</li>
+              <li class="">Linhas Braille atualizáveis</li>
+            </ul>
+          </article>
+          <!-- Card 3 -->
+          <article class="card">
+            <div aria-hidden="true" class="card-header-icon">🚫</div>
+            <h3 class="card-title">Barreiras Digitais</h3>
+            <p class="card-text">
+              Obstáculos criados por decisões inadequadas de código e design que impedem ou dificultam a navegação e o acesso à informação.
+            </p>
+            <ul class="card-list">
+              <li class="">Falta de descrição nas imagens</li>
+              <li class="">Formulários sem rótulos (labels)</li>
+              <li class="">Botões inacessíveis pelo teclado</li>
+            </ul>
+          </article>
+          <!-- Card 4 -->
+          <article class="card">
+            <div aria-hidden="true" class="card-header-icon">🤖</div>
+            <h3 class="card-title">Inteligência Artificial &amp; Inclusão</h3>
+            <p class="card-text">
+              A IA tem impulsionado soluções que geram legendas automáticas em tempo real, sintetizam voz natural e descrevem imagens complexas.
+            </p>
+            <ul class="card-list">
+              <li class="">Legendações automatizadas</li>
+              <li class="">Tradução em Libras virtual</li>
+              <li class="">Reconhecimento visual inteligente</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. SEÇÃO DE GALERIA (ALTERNADA EM ZIGUE-ZAGUE: IMAGEM ESQUERDA/TEXTO DIREITA, DEPOIS IMAGEM DIREITA/TEXTO ESQUERDA) -->
+    <section id="galeria">
+      <div class="container">
+        <h2 class="section-title">Galeria de Tecnologias Inclusivas</h2>
+        <p class="section-subtitle">Exemplos práticos de recursos e contextos onde o design e a tecnologia assistiva garantem autonomia.</p>
+        
+        <div class="zigzag-gallery">
+          <!-- Item 1: Imagem na Esquerda, Texto na Direita -->
+          <article class="zigzag-item">
+            <div class="zigzag-image-container">
+              <img alt="Mulher em cadeira de rodas motorizada usa um acionador na cabeça para controlar um tablet com amigos" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASihc7i8ohih7uNS9YZ7ZN1IL1mz7C64cnVZ3yv5vdWQlgxloWVfJ3fFno7FPy3vCQlOFsxz4SSNtLLMTwsa5-tYuUflN05_lBT65ZCn0jCfGpuKkk7rQL2NMOT0UIDrwIgSNYQurN-brFAJzAFY267VJlfOLfvp75CFEJX_t-3IvSyNYuUqIrdCVGxAFcWtrD4DtxZWVlXtYA1kTsc8-4ueCdAxLE2O6ZqIWUU5RPdE403ax4UIuOv76LuYTHxewHFQE">
+            </div>
+            <div class="zigzag-text-container">
+              <span class="zigzag-badge">Autonomia &amp; Controle</span>
+              <h3 class="zigzag-title">Tecnologia Assistiva no Dia a Dia</h3>
+              <p class="zigzag-desc">
+                Acionadores de movimento e controles adaptados na cabeça permitem autonomia real e comunicação imediata em qualquer ambiente social ou de trabalho.
+              </p>
+              <ul class="zigzag-highlights">
+                <li class=""><span aria-hidden="true" class="">🔹</span> Integração com tablets e computadores</li>
+                <li class=""><span aria-hidden="true" class="">🔹</span> Facilidade de navegação e convivência ativa</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Item 2: Imagem na Direita, Texto na Esquerda (Classe .reverse) -->
+          <article class="zigzag-item reverse">
+            <div class="zigzag-image-container">
+              <img alt="Equipe diversa em laboratório de tecnologia inclusiva testando periféricos acessíveis" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAl9v-_A5Kad0J6oAyLj2mOPU-PlZR7DsJj5F1WYBI00T2UhqSZLVQZvSIHefvFa_b0Kb1DWktQhW9A0bbweoILL6uvyMtjYuB0ggmrrsiqsJogTBNfdqLYNCDJK_DJV1FABBmV3JmRlu2P158Vj-4N4ieHgdj36k_GYOGoYVdJx_zOO9_1qbjLw8ZxlSv-PMYwxMcp9wl4Ed0Sfa9mHqtojss_XOMs2FlGzs9Pwg3SUpFFhv18WNmi_e6cdifW4RpKC4Q">
+            </div>
+            <div class="zigzag-text-container">
+              <span class="zigzag-badge">Colaboração Universal</span>
+              <h3 class="zigzag-title">Inclusão Digital no Trabalho em Equipe</h3>
+              <p class="zigzag-desc">
+                Cada profissional acessa a mesma base de dados através de dispositivos adaptados — trackballs, fones com amplificação sonora e teclados ergonômicos.
+              </p>
+              <ul class="zigzag-highlights">
+                <li class=""><span aria-hidden="true" class="">🔹</span> Estações de trabalho ajustáveis em altura</li>
+                <li class=""><span aria-hidden="true" class="">🔹</span> Ambientes corporativos preparados para a diversidade</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Item 3: Imagem na Esquerda, Texto na Direita -->
+          <article class="zigzag-item">
+            <div class="zigzag-image-container">
+              <img alt="Mulher usando linha braille eletrônica e teclado adaptado em mesa de trabalho" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTT6PNd1g6buPM-gRWALprU3eHwQ1soLCd5hJoPX-Ypt20AC4-Blqsrdz0U3jjOmjArs8nEpNPpj9GwZhaqVdm5T3PuEzrNMUiABtzuE5FyqBaHEi96Cry1ayDoG3IazLW9Zf5lDt4PtvomDmaHYVG-HJDAve6EfHYVlqxi7LvTsofcc3X20mqiDjfBb5qgyb0uSnIFWgHFyV3PMWhansINPnxmmVKii9Ea8bJwxwVRpKDDCYymZwHl4J_4nOIWuTzqnw">
+            </div>
+            <div class="zigzag-text-container">
+              <span class="zigzag-badge">Hardware &amp; Software</span>
+              <h3 class="zigzag-title">Acessibilidade Digital em Foco</h3>
+              <p class="zigzag-desc">
+                Linhas braille atualizáveis e leitores de tela trabalham em conjunto com códigos semânticos para transformar qualquer plataforma web em uma experiência táctil fluida.
+              </p>
+              <ul class="zigzag-highlights">
+                <li class=""><span aria-hidden="true" class="">🔹</span> Suporte direto a terminais Braille físicos</li>
+                <li class=""><span aria-hidden="true" class="">🔹</span> Navegação ágil orientada por atalhos de teclado</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. SEÇÃO DE VÍDEO -->
+    <section id="video">
+      <div class="container">
+        <h2 class="section-title">Vídeo Explicativo</h2>
+        <p class="section-subtitle">Aprenda visualmente como pequenas mudanças no código abrem portas para milhões de pessoas.</p>
+        <div class="media-card">
+          <div class="video-container">
+            <video class="video-player" controls="" poster="assets/video/poster.jpg" preload="metadata">
+              <source src="assets/video/video-explicativo.mp4" type="video/mp4">
+              Seu navegador não suporta a reprodução de vídeo em HTML5.
+            </video>
+          </div>
+          <!-- Transcrição Completa -->
+          <details>
+            <summary>Clique para ler a transcrição completa do vídeo</summary>
+            <div class="transcription-box">
+              <p class=""><span class="speaker">[Narrador]:</span> Sejam bem-vindos ao guia prático de Acessibilidade na Web. Hoje discutiremos por que a inclusão digital começa na primeira linha de código.</p>
+              <p class=""><span class="speaker">[Narrador]:</span> Quando você usa elementos como botões reais em vez de divs genéricas, o leitor de tela entende exatamente qual é a ação esperada e informa a pessoa usuária de maneira assertiva.</p>
+              <p class=""><span class="speaker">[Especialista convidada]:</span> "Muitas vezes as pessoas pensam que acessibilidade é caro ou demorado. Na verdade, quando feita desde o início do projeto, trata-se apenas de seguir os padrões universais do HTML."</p>
+              <p class=""><span class="speaker">[Narrador]:</span> Lembre-se: contraste adequado de cores, suporte completo para navegação com a tecla Tab e legendas em conteúdos multimídia transformam vidas.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. SEÇÃO DE PODCAST (COM LEGENDA LOGO ABAIXO DO PLAYER) -->
+    <section id="podcast">
+      <div class="container">
+        <h2 class="section-title">Podcast Voz Inclusiva</h2>
+        <p class="section-subtitle">Episódio #01: "Como iniciar seus primeiros projetos com acessibilidade em mente".</p>
+        <div class="media-card">
+          <figure class="audio-wrapper">
+            <div class="audio-player-stage">
+              <audio class="audio-player" id="podcast-audio" controls="" preload="metadata">
+                <source src="assets/audio/podcast.m4a" type="audio/mp4">
+                <track kind="captions" src="assets/audio/podcast.vtt" srclang="pt-BR" label="Português" default="">
+                Seu navegador não suporta a reprodução de áudio em HTML5.
+              </audio>
+              <p class="audio-caption-bar" id="live-caption-overlay" aria-live="polite">
+                Pressione Play para acompanhar a legenda em tempo real.
+              </p>
+            </div>
+            <figcaption class="audio-figcaption">
+              Episódio #01 — Voz Inclusiva: primeiros passos para programar com acessibilidade, com Lucas e Mariana.
+            </figcaption>
+
+            <div class="podcast-captions-box">
+              <div class="podcast-captions-header">
+                <span class="podcast-captions-title">
+                  <span class="live-dot" aria-hidden="true"></span> Legenda do Áudio
+                </span>
+                <span style="font-size: 0.8rem; color: var(--text-subtle);">Sincronizada com o áudio</span>
+              </div>
+              <div class="live-caption-text" id="live-caption-display">
+                Pressione Play no reprodutor acima para acompanhar a legenda em tempo real...
+              </div>
+            </div>
+          </figure>
+
+          <!-- Transcrição Completa com <details> e <summary> -->
+          <details>
+            <summary>Clique para ler a transcrição completa do podcast</summary>
+            <div class="transcription-box">
+              <p class=""><span class="speaker">[Apresentador Lucas]:</span> Olá a todos! Está no ar o primeiro episódio do Voz Inclusiva, o podcast do projeto Tecnologia para Todos.</p>
+              <p class=""><span class="speaker">[Apresentador Lucas]:</span> Hoje recebemos a desenvolvedora Mariana para bater um papo sobre os maiores erros cometidos por quem está começando a programar para web.</p>
+              <p class=""><span class="speaker">[Mariana]:</span> Oi Lucas, é um prazer! O erro mais comum é esquecer o atributo alt nas imagens ou esquecer o foco visível nos links. A boa notícia é que com HTML simples nós já resolvemos 80% dos problemas de acessibilidade!</p>
+              <p class=""><span class="speaker">[Apresentador Lucas]:</span> Sensacional! No próximo bloco veremos exemplos práticos com formulários e rótulos semânticos. Não saiam daí!</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       7. FOOTER (Rodapé do Projeto)
+       ========================================================================== -->
+  <footer class="main-footer" id="contato">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h2 class="">Tecnologia para Todos</h2>
+          <p class="">
+            Construindo pontes através do código. Um portal educativo dedicado a espalhar a cultura de acessibilidade e empoderar novas gerações de desenvolvedores web com práticas conscientes e inclusivas.
+          </p>
+        </div>
+        <div class="footer-team">
+          <h3 class="">Integrantes da Equipe</h3>
+          <ul class="team-list">
+            <li class=""><span class="placeholder-text">[Heitor laranejira de moraes]</span> <span aria-hidden="true" class="">—</span> <span class="team-badge placeholder-text">[Desenvolvimento do site ]</span></li>
+            <li class=""><span class="placeholder-text"></span> <span aria-hidden="true" class="">—</span> <span class="team-badge placeholder-text">[Criação das imagens, Edição das mídias, Organização do projeto]</span></li>
+            <li class=""><span class="placeholder-text"></span> <span aria-hidden="true" class="">—</span> <span class="team-badge placeholder-text">[Testes e correções, Revisão final, Produção do vídeo, Produção do podcast]</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="">© <span class="placeholder-text">[2026]</span> Tecnologia para Todos. Desenvolvido para inspirar uma web aberta, acessível e universal.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       SCRIPT.JS (Interações, Menu Mobile e Legenda do Podcast)
+       ========================================================================== -->
+  <script>
+    // 1. Menu Mobile Toggle
+    const btnMenu = document.getElementById('btn-menu');
+    const navList = document.getElementById('nav-list');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (btnMenu) {
+      btnMenu.addEventListener('click', function() {
+        const isExpanded = btnMenu.getAttribute('aria-expanded') === 'true';
+        btnMenu.setAttribute('aria-expanded', !isExpanded);
+        navList.classList.toggle('active');
+      });
+    }
+
+    navLinks.forEach(function(link) {
+      link.addEventListener('click', function() {
+        if (navList && navList.classList.contains('active')) {
+          navList.classList.remove('active');
+          btnMenu.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // 2. Acessibilidade para <details>
+    const detailsElements = document.querySelectorAll('details');
+    detailsElements.forEach(function(detail) {
+      detail.addEventListener('toggle', function() {
+        const summary = detail.querySelector('summary');
+        if (detail.open) {
+          summary.setAttribute('title', 'Conteúdo aberto');
+        } else {
+          summary.setAttribute('title', 'Conteúdo recolhido');
+        }
+      });
+    });
+
+    // 3. Sistema de Legenda Interativa do Podcast
+    const podcastAudio = document.getElementById('podcast-audio');
+    const captionDisplay = document.getElementById('live-caption-display');
+    const captionOverlay = document.getElementById('live-caption-overlay');
+
+    if (podcastAudio && captionDisplay) {
+      const transcriptCues = [
+        { start: 0, end: 5, text: "Lucas: Olá a todos! Está no ar o primeiro episódio do Voz Inclusiva..." },
+        { start: 5, end: 11, text: "Lucas: Hoje recebemos a desenvolvedora Mariana para bater um papo sobre os maiores erros na web." },
+        { start: 11, end: 18, text: "Mariana: Oi Lucas! O erro mais comum é esquecer o atributo alt nas imagens ou o foco visível nos links." },
+        { start: 18, end: 25, text: "Mariana: A boa notícia é que com HTML semântico resolvemos 80% dos problemas de acessibilidade!" },
+        { start: 25, end: 40, text: "Lucas: Sensacional! No próximo bloco veremos exemplos práticos com formulários e rótulos semânticos." }
+      ];
+
+      function setCaption(text) {
+        captionDisplay.textContent = text;
+        if (captionOverlay) {
+          captionOverlay.textContent = text;
+        }
+      }
+
+      podcastAudio.addEventListener('timeupdate', function() {
+        const currentTime = podcastAudio.currentTime;
+        const currentCue = transcriptCues.find(function(cue) {
+          return currentTime >= cue.start && currentTime < cue.end;
+        });
+
+        if (currentCue) {
+          setCaption(currentCue.text);
+        } else if (currentTime >= 40) {
+          setCaption("Fim do episódio #01.");
+        }
+      });
+
+      podcastAudio.addEventListener('play', function() {
+        if (podcastAudio.currentTime < 0.4) {
+          setCaption("Lucas: Olá a todos! Está no ar o primeiro episódio do Voz Inclusiva...");
+        }
+      });
+    }
+  </script>
+
+</body></html>
